@@ -12,6 +12,6 @@ require("./configs/debug.config");
 
 // Base URL's
 app.use("/", require("./routes/index.routes"));
-app.use("/user", require("./routes/api.routes"));
+app.use("/api/users", require("./routes/user.routes"));
 
 module.exports = app;
