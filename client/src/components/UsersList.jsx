@@ -27,6 +27,13 @@ class UserList extends React.Component {
       .catch(err => console.log("Error", err));
   };
 
+  deleteHandler = id => {
+    this._service
+      .deleteUser(id)
+      .then(x => this.updateUserList())
+      .catch(err => console.log("Error", err));
+  };
+
   render() {
     return (
       <section>
@@ -45,9 +52,10 @@ class UserList extends React.Component {
 
           <Row>
             {this.state.users.map(user => (
-              <UserCard key={user._id} {...user} />
+              <UserCard key={user._id} {...user} delete={this.deleteHandler} />
             ))}
           </Row>
+          
         </Container>
       </section>
     );
