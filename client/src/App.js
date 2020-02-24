@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./screens/Home";
 import UsersList from "./components/UsersList";
 import UserDetails from "./components/UserDetails";
+import NewUser from "./components/NewUser";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
         <Route exact path="/users/allUsers" render={() => <UsersList />} />
         <Route path="/users/user/:id" component={UserDetails} />
+        <Route path="/users/newUser" component={NewUser} />
       </Switch>
     </>
   );

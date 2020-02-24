@@ -8,24 +8,32 @@ import Service from "../services/User.service";
 class AddUser extends Component {
   constructor(props) {
     super(props);
-        this._service = new Service();
+    this._service = new Service();
     this.state = {
-      user: {}
+      user: {
+        name: "",
+        birthdate: ""
+      }
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this._service.newUser(this.state.user);
+    this._service
+      .newUser(this.state.user)
+      .then(x => {
+        this.setState({ user: { name: "", birthdate: "" } });
+        //this.props.updateCoastersList()
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputChange = e => {
-    let { name, value} = e.target;
+    let { name, value } = e.target;
     this.setState({
       user: { ...this.state.user, [name]: value }
     });
   };
-
 
   render() {
     return (
@@ -39,17 +47,17 @@ class AddUser extends Component {
             <Form.Control
               type="text"
               name="name"
+              value={this.state.user.name}
               onChange={this.handleInputChange}
-              value={this.state.user}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>Cumpleaños</Form.Label>
             <Form.Control
-              type="text"
-              name="name"
+              type="date"
+              name="birthdate"
+              value={this.state.user.birthdate}
               onChange={this.handleInputChange}
-              value={this.state.user}
             />
           </Form.Group>
 
@@ -57,10 +65,11 @@ class AddUser extends Component {
             <Button variant="dark" type="submit">
               Crear
             </Button>
-            <Link to="/users/allUsers" className="btn btn-dark">
-              Volver a usuarios
-            </Link>
           </div>
+          <br></br>
+          <Link to="/users/allUsers" className="btn btn-dark">
+            Volver a usuarios
+          </Link>
         </Form>
       </Container>
     );

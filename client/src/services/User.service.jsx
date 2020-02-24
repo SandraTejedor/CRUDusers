@@ -10,5 +10,5 @@ export default class Services {
 
   getAllUsers = () => this._service.get("/allUsers");
   getOneUser = id => this._service.get(`/user/${id}`);
-  newUser = user => this._service.post("newUser", user);
+  newUser = user => this._service.post("/newUser", user);
 }

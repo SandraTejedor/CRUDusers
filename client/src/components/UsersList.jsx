@@ -2,6 +2,7 @@ import React from "react";
 import Service from "../services/User.service";
 
 import { Container, Row, Button, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import UserCard from "./UserCard";
 
@@ -30,8 +31,12 @@ class UserList extends React.Component {
     return (
       <section>
         <Container>
-            
+          <br />
           <h1>Usuarios: </h1>
+          <Link to="/users/newUser" className="btn btn-dark">
+            Añadir nuevos usuarios
+          </Link>
+          <br />
           <br />
 
           {/* <Button variant="dark">
