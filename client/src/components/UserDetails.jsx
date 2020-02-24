@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Service from "../services/User.service";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class UserDetails extends Component {
@@ -12,10 +12,17 @@ class UserDetails extends Component {
 
   componentDidMount = () => {
     const userId = this.props.match.params.id;
+    console.log(this.props, "el match");
     this._service
       .getOneUser(userId)
       .then(theUser => this.setState({ user: theUser.data }))
       .catch(err => console.log(err));
+  };
+  deleteHandler = id => {
+    this._service
+      .deleteUser(id)
+      .then(x => this.props.history.replace("/users/allUsers"))
+      .catch(err => console.log("Error", err));
   };
 
   render() {
@@ -28,7 +35,14 @@ class UserDetails extends Component {
               <p>
                 <strong>Cumpleaños:</strong> {this.state.user.birthdate}
               </p>
-              <Link to="/users/allUsers" className="btn btn-dark">
+
+              <Button
+                className="btn btn-sm btn-dark"
+                onClick={() => this.deleteHandler(this.props.match.params.id)}
+              >
+                Borrar usuario
+              </Button>
+              <Link to="/users/allUsers" className="btn btn-sm  btn-dark">
                 Volver a usuarios
               </Link>
             </Col>

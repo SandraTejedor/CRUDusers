@@ -33,7 +33,12 @@ class UserCard extends Component {
     this._service = new Service();
     this.state = {};
   }
-
+  deleteHandler = id => {
+    this._service
+      .deleteUser(id)
+      .then(x => this.updateUserList())
+      .catch(err => console.log("Error", err));
+  }
   render() {
     return (
       <Col className="coaster-card" md={4}>

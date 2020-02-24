@@ -15,7 +15,10 @@ function App() {
         <Route exact path="/" component={Home} />
 
         <Route exact path="/users/allUsers" render={() => <UsersList />} />
-        <Route path="/users/user/:id" component={UserDetails} />
+        <Route
+          path="/users/user/:id"
+          render={match => <UserDetails {...match} />}
+        />
         <Route path="/users/newUser" component={NewUser} />
       </Switch>
     </>
