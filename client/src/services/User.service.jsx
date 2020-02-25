@@ -12,6 +12,6 @@ export default class Services {
   getOneUser = id => this._service.get(`/user/${id}`);
   newUser = user => this._service.post("/newUser", user);
   deleteUser = id => this._service.delete(`/deleteUser/${id}`);
-  editUser = id => this._service.put(`/editUser/${id}`)
+  editUser = (id, user) => this._service.put(`/editUser/${id}`, user)
 
 }

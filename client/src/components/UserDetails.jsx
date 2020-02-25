@@ -20,6 +20,9 @@ class UserDetails extends Component {
       .then(theUser => this.setState({ user: theUser.data }))
       .catch(err => console.log(err));
   };
+  updateUser = (user) => {
+    this.setState({ user})
+  };
   deleteHandler = id => {
     this._service
       .deleteUser(id)
@@ -81,7 +84,7 @@ class UserDetails extends Component {
           <Modal.Body>
             <EditUser
               closeModalWindow={this.handleClose}
-              updateUserList={this.updateUserList}
+              updateUser={this.updateUser}
               user={this.state.user}
               // id={this.props.match.params.id}
             />

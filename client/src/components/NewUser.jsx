@@ -47,6 +47,7 @@ class AddUser extends Component {
             <Form.Control
               type="text"
               name="name"
+              required
               value={this.state.user.name}
               onChange={this.handleInputChange}
             />
@@ -56,6 +57,8 @@ class AddUser extends Component {
             <Form.Control
               type="date"
               name="birthdate"
+              required
+              pattern="\d{1,2}/\d{1,2}(19|20)\d{2}"
               value={this.state.user.birthdate}
               onChange={this.handleInputChange}
             />
