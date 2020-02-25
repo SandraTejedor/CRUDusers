@@ -1,7 +1,7 @@
 import React from "react";
 import Service from "../services/User.service";
 
-import { Container, Row, Button, Modal } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import UserCard from "./UserCard";
@@ -45,17 +45,12 @@ class UserList extends React.Component {
           </Link>
           <br />
           <br />
-
-          {/* <Button variant="dark">
-              Nuevo usuario
-            </Button> */}
-
+          <hr />
           <Row>
             {this.state.users.map(user => (
               <UserCard key={user._id} {...user} delete={this.deleteHandler} />
             ))}
           </Row>
-          
         </Container>
       </section>
     );

@@ -9,7 +9,7 @@ const User = require("../models/user.model");
 // });
 
 //Get all users from database
-router.get("/allUsers", (req, res) => {
+router.get("/", (req, res) => {
   User.find()
     .then(users => res.json(users))
     .catch(err => console.log("DB error", err));

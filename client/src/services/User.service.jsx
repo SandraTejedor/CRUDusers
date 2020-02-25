@@ -8,8 +8,10 @@ export default class Services {
     });
   }
 
-  getAllUsers = () => this._service.get("/allUsers");
+  getAllUsers = () => this._service.get("/");
   getOneUser = id => this._service.get(`/user/${id}`);
   newUser = user => this._service.post("/newUser", user);
   deleteUser = id => this._service.delete(`/deleteUser/${id}`);
+  editUser = id => this._service.put(`/editUser/${id}`)
+
 }

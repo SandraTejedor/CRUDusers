@@ -1,18 +1,23 @@
 //import Card from "./components/Card";
 
-import React from 'react'
-import { Container, Row } from 'react-bootstrap'
+import React from "react";
+import { Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Home= () => {
+const Home = () => {
+  return (
+    <Container>
+      <br></br>
+      <Row>
+        <section>
+          <h1>CRUD of Users</h1>
+          <Link to="/" className="btn btn-sm  btn-dark">
+            Ver usuarios
+          </Link>
+        </section>
+      </Row>
+    </Container>
+  );
+};
 
-    return (
-        <Container>
-            <section>
-                <h1>CRUD of Users</h1>
-               
-            </section>
-        </Container>
-    )
-}
-
-export default Home
+export default Home;

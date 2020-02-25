@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 
 import Service from "../services/User.service";
 
-class AddUser extends Component {
+class EditUser extends Component {
   constructor(props) {
     super(props);
     this._service = new Service();
     this.state = {
+      disabledButton: false,
+      buttonText: "Editar usuario",
       user: {
         name: "",
         birthdate: ""
@@ -19,11 +21,12 @@ class AddUser extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state.user, "el user", "el id", this.props.user._id);
     this._service
-      .newUser(this.state.user)
+      .editUser(this.props.user._id)
       .then(x => {
-        this.setState({ user: { name: "", birthdate: "" } });
-        //this.props.updateCoastersList()
+        this.props.closeModalWindow();
+        // this.props.updateUserList()
       })
       .catch(err => console.log(err));
   };
@@ -36,18 +39,29 @@ class AddUser extends Component {
   };
 
   render() {
+    let birthDay = new Date(this.props.user.birthdate);
+    // console.log(birthDay.toLocaleDateString());
+
+    let year = birthDay.getFullYear();
+    let month = birthDay.getMonth() + 1;
+    let monthSte = month.toString().padStart(2, "0");
+    let day = birthDay
+      .getDate()
+      .toString()
+      .padStart(2, "0");
+    // console.log(birthDay.getDay(), day);
+    const string = `${year}-${monthSte}-${day}`;
+    // console.log(string);
+
     return (
       <Container>
         <Form onSubmit={this.handleSubmit}>
-          <br></br>
-          <h2>Añadir nuevos usuarios</h2>
-
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
               name="name"
-              value={this.state.user.name}
+              value={this.props.user.name}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -56,7 +70,7 @@ class AddUser extends Component {
             <Form.Control
               type="date"
               name="birthdate"
-              value={this.state.user.birthdate}
+              value={string}
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -67,8 +81,12 @@ class AddUser extends Component {
             </Button>
           </div>
           <br></br>
-          <Link to="/" className="btn btn-dark">
-            Volver a usuarios
+          <Link
+            to={`/users/user/${this.props.user._id}`}
+            className="btn btn-dark"
+            onClick={this.props.closeModalWindow}
+          >
+            Volver a usuario
           </Link>
         </Form>
       </Container>
@@ -76,4 +94,4 @@ class AddUser extends Component {
   }
 }
 
-export default AddUser;
+export default EditUser;
