@@ -40,7 +40,7 @@ class AddUser extends Component {
       <Container>
         <Form onSubmit={this.handleSubmit}>
           <br></br>
-          <h2>Añadir nuevos usuarios</h2>
+          <h2>Añadir un nuevo usuario</h2>
 
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
@@ -58,15 +58,16 @@ class AddUser extends Component {
               type="date"
               name="birthdate"
               required
-              pattern="\d{1,2}/\d{1,2}(19|20)\d{2}"
+              // pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+              pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])-(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])-(?:30))|(?:(?:0\[13578\]|1\[02\])-31))"
               value={this.state.user.birthdate}
               onChange={this.handleInputChange}
             />
           </Form.Group>
 
           <div>
-            <Button variant="dark" type="submit">
-              Crear
+            <Button variant="success" type="submit">
+              Añadir
             </Button>
           </div>
           <br></br>

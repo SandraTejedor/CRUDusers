@@ -78,14 +78,14 @@ class EditUser extends Component {
               required
               type="date"
               name="birthdate"
-              
+              pattern="\d{1,2}/\d{1,2}19||20\d{2}"
               value={this.state.user.birthdate}
               onChange={this.handleInputChange}
             />
           </Form.Group>
 
           <div>
-            <Button variant="dark" type="submit">
+            <Button variant="success" type="submit">
               Actualizar
             </Button>
           </div>

@@ -20,8 +20,8 @@ class UserDetails extends Component {
       .then(theUser => this.setState({ user: theUser.data }))
       .catch(err => console.log(err));
   };
-  updateUser = (user) => {
-    this.setState({ user})
+  updateUser = user => {
+    this.setState({ user });
   };
   deleteHandler = id => {
     this._service
@@ -59,16 +59,16 @@ class UserDetails extends Component {
                 </p>
 
                 <Button
-                  className="btn btn-sm btn-dark"
-                  onClick={() => this.deleteHandler(this.props.match.params.id)}
-                >
-                  Borrar usuario
-                </Button>
-                <Button
-                  className="btn btn-sm btn-dark"
+                  className="btn btn-sm btn-warning"
                   onClick={() => this.handleShow()}
                 >
                   Editar usuario
+                </Button>
+                <Button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => this.deleteHandler(this.props.match.params.id)}
+                >
+                  Borrar usuario
                 </Button>
                 <Link to="/" className="btn btn-sm  btn-dark">
                   Volver a usuarios

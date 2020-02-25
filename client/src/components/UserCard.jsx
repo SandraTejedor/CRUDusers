@@ -25,13 +25,13 @@ class UserCard extends Component {
         {/* <p>Cumpleaños: {birthdate}</p> */}
 
         <Link
-          className="btn btn-sm btn-dark"
+          className="btn btn-sm btn-info"
           to={`users/user/${this.props._id}`}
         >
           Ver detalles
         </Link>
         <Button
-          className="btn btn-sm btn-dark"
+          className="btn btn-sm btn-danger"
           onClick={() => this.props.delete(this.props._id)}
         >
           Borrar usuario
