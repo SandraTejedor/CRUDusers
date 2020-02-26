@@ -20,7 +20,7 @@ class UserCard extends Component {
   };
   render() {
     return (
-      <Col className="coaster-card" md={4}>
+      <Col md={4}>
         <h5>Nombre: {this.props.name}</h5>
         {/* <p>Cumpleaños: {birthdate}</p> */}
 

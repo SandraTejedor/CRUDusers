@@ -23,7 +23,6 @@ class AddUser extends Component {
       .newUser(this.state.user)
       .then(x => {
         this.setState({ user: { name: "", birthdate: "" } });
-        //this.props.updateCoastersList()
       })
       .catch(err => console.log(err));
   };
