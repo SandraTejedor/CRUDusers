@@ -13,16 +13,37 @@ class AddUser extends Component {
       user: {
         name: "",
         birthdate: ""
-      }
+      },
+      errorMessage: ""
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
+
+    //aqui las condiciones
+    //condicion de que ningun campo esté vacio
+    if (
+      this.state.user.name.length == 0 ||
+      this.state.user.birthdate.length == 0
+    ) {
+      this.setState({ errorMessage: "Rellena ambos campos" });
+      return;
+    }
+
+    let birthDay = new Date(this.state.user.birthdate);
+    let year = birthDay.getFullYear();
+
+    //condición de fecha de nacimiento
+    if (year < 1900 || year > 2020) {
+      this.setState({ errorMessage: "Añade una fecha correcta" });
+      return;
+    }
+
     this._service
       .newUser(this.state.user)
       .then(x => {
-        this.setState({ user: { name: "", birthdate: "" } });
+        this.setState({ user: { name: "", birthdate: "" }, errorMessage: "" });
       })
       .catch(err => console.log(err));
   };
@@ -46,7 +67,7 @@ class AddUser extends Component {
             <Form.Control
               type="text"
               name="name"
-              required
+              // required
               value={this.state.user.name}
               onChange={this.handleInputChange}
             />
@@ -56,7 +77,7 @@ class AddUser extends Component {
             <Form.Control
               type="date"
               name="birthdate"
-              required
+              // required
               // pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
               pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])-(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])-(?:30))|(?:(?:0\[13578\]|1\[02\])-31))"
               value={this.state.user.birthdate}
@@ -70,6 +91,7 @@ class AddUser extends Component {
             </Button>
           </div>
           <br></br>
+          <p className="aviso">{this.state.errorMessage}</p>
           <Link to="/" className="btn btn-dark">
             Volver a usuarios
           </Link>
