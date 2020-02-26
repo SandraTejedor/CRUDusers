@@ -1,7 +1,7 @@
 import React from "react";
 import Service from "../services/User.service";
 
-import { Container, Row, Button } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import UserCard from "./UserCard";

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 //Routes Switch
-import Home from "./screens/Home";
+
 import UsersList from "./components/UsersList";
 import UserDetails from "./components/UserDetails";
 import NewUser from "./components/NewUser";
@@ -13,7 +13,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={UsersList} />
 
-        {/* <Route exact path="/users/allUsers" render={() => <UsersList />} /> */}
         {/* <Route path="/users/user/:id" component={UserDetails} /> */}
         <Route
           path="/users/user/:id"
