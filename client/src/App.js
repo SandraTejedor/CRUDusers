@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-//Routes Switch
+//Routes Switch - todo lo de fuera del switch se muestra siempre, es decir la navbar iria ahi
 
 import UsersList from "./components/UsersList";
 import UserDetails from "./components/UserDetails";
